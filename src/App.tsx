@@ -1,16 +1,12 @@
-import { useState } from 'react'
+import { Route, Routes } from 'react-router-dom'
 import './App.css'
-import { Box, Typography } from '@mui/material'
+import { Home } from './pages/Home'
 
-const App = () => {
-  const [count, setCount] = useState(0)
-
+const App = (): JSX.Element => {
   return (
-    <>
-     <Box>
-        <Typography component='h1' variant='h1' color='red'>Pokemons!</Typography>
-     </Box>
-    </>
+    <Routes>
+      <Route path='' element={<Home />} />
+    </Routes>
   )
 }
 
