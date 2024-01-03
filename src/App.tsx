@@ -1,8 +1,7 @@
 import { Route, Routes } from 'react-router-dom'
-import './App.css'
 import { Home } from './pages/Home'
 
-const App = (): JSX.Element => {
+const App = () => {
   return (
     <Routes>
       <Route path='' element={<Home />} />
