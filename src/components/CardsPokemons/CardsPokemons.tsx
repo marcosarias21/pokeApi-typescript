@@ -1,28 +1,23 @@
-import { Button, Card, CardActions, CardContent, CardMedia, Typography } from '@mui/material'
+import { Card, CardContent, CardMedia, Grid, Typography } from '@mui/material'
 import { type PokemonDetail } from '../../types'
 
-const CardsPokemons = ({ abilities, name }: PokemonDetail) => {
+const CardsPokemons = ({ name, sprites }: PokemonDetail) => {
   return (
-    <Card sx={{ maxWidth: 345 }}>
-      <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
-      />
-      <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
-          {name}
-        </Typography>
-        <Typography variant="body2" color="text.secondary">
-          Lizards are a widespread group of squamate reptiles, with over 6,000
-          species, ranging across all continents except Antarctica
-        </Typography>
-      </CardContent>
-      <CardActions>
-        <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button>
-      </CardActions>
-    </Card>
+    <Grid item lg={2}>
+      <Card sx={{ backgroundColor: 'black' }}>
+          <CardMedia
+            component={'img'}
+            sx={{ backgroundSize: 'cover' }}
+            image={sprites?.other?.['official-artwork'].front_default}
+            title="green iguana"
+          />
+        <CardContent sx={{ display: 'flex', justifyContent: 'center' }}>
+          <Typography gutterBottom variant="h5" textAlign={'center'} component="h5" color={'white'}>
+            {name.toUpperCase()}
+          </Typography>
+        </CardContent>
+      </Card>
+    </Grid>
   )
 }
 
