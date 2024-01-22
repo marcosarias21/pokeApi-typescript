@@ -5,11 +5,13 @@ import { type PokemonDetail, type FetchData } from '../../types'
 import { useEffect, useState } from 'react'
 import axios from 'axios'
 import { Box, Grid } from '@mui/material'
+import { FilterPokemon } from '../../components/FilterPokemon'
 
 const Home = (): JSX.Element => {
   const [pokemonDetails, setPokemonDetails] = useState<PokemonDetail[]>()
   const pokemonsUrl: FetchData = useFetch('https://pokeapi.co/api/v2/pokemon')
-  console.log(pokemonsUrl)
+  const pokemonsType: FetchData = useFetch('https://pokeapi.co/api/v2/type')
+  console.log(pokemonsType)
   const getData = async (): Promise<void> => {
     const promises = pokemonsUrl.data?.results?.map(async (pokemon) => {
       const resp = await axios(pokemon.url)
@@ -28,12 +30,16 @@ const Home = (): JSX.Element => {
   return (
     <>
       <Navbar />
+      <Box>
+      </Box>
       <Box display='flex' mt={10}>
-        <Grid container spacing={2}>
-          {pokemonDetails?.map((pokemon, i) => <CardsPokemons {...pokemon} key={i}/>)}
-        </Grid>
-        <Box>
-          FilterInput
+        <Box sx={{ width: '100%' }}>
+          <Grid container spacing={2}>
+            {pokemonDetails?.map((pokemon, i) => <CardsPokemons {...pokemon} key={i}/>)}
+          </Grid>
+        </Box>
+        <Box sx={{ width: '30%' }}>
+          <FilterPokemon pokemonsType={pokemonsType.data?.results} />
         </Box>
       </Box>
     </>
